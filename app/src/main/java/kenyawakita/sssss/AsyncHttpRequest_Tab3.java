@@ -23,31 +23,38 @@ import java.util.Collections;
 
 public class AsyncHttpRequest_Tab3 extends AsyncTask<String, Void, String> {
     public Activity owner;
-    public JSONObject[] newsSites;
     ArrayList<FetchNews> newsList = new ArrayList<FetchNews>();
 
     public AsyncHttpRequest_Tab3(Activity activity) {
         owner = activity;
     }
+
+
+
     @Override
     protected String doInBackground(String... url) {
-        try {
-            newsSites = new JSONObject[url.length];
-            for(int i = 0; i < url.length; i++){
-                HttpGet httpGet = new HttpGet(url[i]);
-                DefaultHttpClient httpClient = new DefaultHttpClient();
-                httpGet.setHeader("Connection", "Keep-Alive");
-                HttpResponse response = httpClient.execute(httpGet);
+        if (Constants.Newsflag) {
 
-                int status = response.getStatusLine().getStatusCode();
-                if (status != HttpStatus.SC_OK) {
-                    throw new Exception("");
-                } else {
-                    newsSites[i] = new JSONObject(EntityUtils.toString(response.getEntity(), "UTF-8"));
+            try {
+                Constants.newsSites = new JSONObject[url.length];
+                for (int i = 0; i < url.length; i++) {
+                    HttpGet httpGet = new HttpGet(url[i]);
+                    DefaultHttpClient httpClient = new DefaultHttpClient();
+                    httpGet.setHeader("Connection", "Keep-Alive");
+                    HttpResponse response = httpClient.execute(httpGet);
+
+                    int status = response.getStatusLine().getStatusCode();
+                    if (status != HttpStatus.SC_OK) {
+                        throw new Exception("");
+                    } else {
+                        Constants.newsSites[i] = new JSONObject(EntityUtils.toString(response.getEntity(), "UTF-8"));
+                    }
                 }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+            //一度通れば良いので，flagをfalseへ
+            Constants.Newsflag=false;
         }
         return "";
     }
@@ -60,29 +67,36 @@ public class AsyncHttpRequest_Tab3 extends AsyncTask<String, Void, String> {
         ArrayList<String> site = new ArrayList<String>();
         final String property = Constants.PROPERTY;
 
-        try {
-            for(int i = 0; i < newsSites.length; i++){
-                JSONArray contents = newsSites[i].getJSONObject("results").getJSONArray("collection1");
-                for(int j = 0; j < contents.length(); j++){
-                    JSONObject roo = contents.getJSONObject(j);
+            try {
+                for (int i = 0; i < Constants.newsSites.length; i++) {
+                    JSONArray contents = Constants.newsSites[i].getJSONObject("results").getJSONArray("collection1");
+                    for (int j = 0; j < contents.length(); j++) {
+                        JSONObject roo = contents.getJSONObject(j);
 
+                       href.add(roo.getString("url"));
 
-                    Log.d("log:", "jfsljf");
-
-                    href.add(roo.getString("url"));
-
-                    try{
-                        newsList.add(new FetchNews(roo.getJSONObject(property).getString("text"), roo.getString("url"), roo.getString("pubDate"),newsSites[i].getString("name")));
-                    } catch (Exception e){
-                        newsList.add(new FetchNews(roo.getString(property), roo.getString("url"), roo.getString("pubDate"),newsSites[i].getString("name")));
+                        try {
+                            newsList.add(new FetchNews(roo.getJSONObject(property).getString("text"), roo.getJSONObject(property).getString("href"), roo.getString("pubDate"), Constants.newsSites[i].getString("name")));
+                        } catch (Exception e) {
+                            newsList.add(new FetchNews(roo.getString(property), roo.getString("url"), roo.getString("pubDate"), Constants.newsSites[i].getString("name")));
+                        }
                     }
-
                 }
+
+
+
+
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
 
-            //三つの記事を日付でソート
-            Collections.sort(newsList, new DateComparator());
-            ListView listView = (ListView) owner.findViewById(R.id.list3); //list2の部分を汎用化したい
+
+        //三つの記事を日付でソート
+        Collections.sort(newsList, new DateComparator());
+
+
+
+            ListView listView = (ListView) owner.findViewById(R.id.list3); //list3の部分を汎用化したい
             NewsListAdapter adapter = new NewsListAdapter(
                     owner,
                     0,
@@ -101,16 +115,16 @@ public class AsyncHttpRequest_Tab3 extends AsyncTask<String, Void, String> {
 
 
                     Intent intent = new Intent(owner, ContentActivity.class);
-                    intent.putExtra("url", href.get(position));
+                    intent.putExtra("url", newsList.get(position).getUrl());
                     intent.putExtra("title", "ニュース");
                     owner.startActivity(intent);
                 }
             });
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-//         catch (ParseException e) {
-//            e.printStackTrace();
-//        }
     }
+
+
+
+
+
+
 }

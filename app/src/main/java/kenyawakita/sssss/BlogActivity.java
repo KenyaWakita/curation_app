@@ -32,73 +32,105 @@ public class BlogActivity extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle saveInstanceState) {
          final View view = inflater.inflate(R.layout.blog_tab, container, false);
 
-        final ArrayList<FetchBlog> Blog = new ArrayList<FetchBlog>();
-        mQueue = Volley.newRequestQueue(getActivity());
+        if (Constants.blogtflag) {
+            mQueue = Volley.newRequestQueue(getActivity());
 
-        mQueue.add(new JsonObjectRequest(Request.Method.GET, Constants.AMEBA_URL, null,
-                new Response.Listener<JSONObject>() {
+            mQueue.add(new JsonObjectRequest(Request.Method.GET, Constants.AMEBA_URL, null,
+                    new Response.Listener<JSONObject>() {
 
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        try {
-                            JSONArray collection = response.getJSONObject("results").getJSONArray("collection1");
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            try {
+                                JSONArray collection = response.getJSONObject("results").getJSONArray("collection1");
 
-                            ArrayList<String> title = new ArrayList<String>();
-                            final ArrayList<String> href = new ArrayList<String>();
-                            ArrayList<String> date = new ArrayList<String>();
+                                ArrayList<String> title = new ArrayList<String>();
+                                final ArrayList<String> href = new ArrayList<String>();
+                                ArrayList<String> date = new ArrayList<String>();
 
-                            for (int i = 0; i < collection.length(); i++) {
-                                JSONObject roo = collection.getJSONObject(i);
-                                title.add(roo.getJSONObject("property1").getString("text"));
-                                date.add(roo.getString("property2"));
-                                href.add(roo.getJSONObject("property1").getString("href"));
+                                for (int i = 0; i < collection.length(); i++) {
+                                    JSONObject roo = collection.getJSONObject(i);
+                                    title.add(roo.getJSONObject("property1").getString("text"));
+                                    date.add(roo.getString("property2"));
+                                    href.add(roo.getJSONObject("property1").getString("href"));
 
-                                Blog.add(new FetchBlog(title.get(i), date.get(i)));
-
-                            }
-
-                            ListView blogListView = (ListView) view.findViewById(R.id.list2);
-
-
-                            BlogListAdapter adapter = new BlogListAdapter(
-                                    getActivity(),
-                                    0,
-                                    Blog
-                            );
-
-                            blogListView.setAdapter(adapter);
-
-                            blogListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                                @Override
-                                public void onItemClick(
-                                        AdapterView<?> parent,
-                                        View view,
-                                        int position,
-                                        long id
-                                ) {
-
-                                    //今いるアクティビティからContentActivityへのintentを作る
-                                    Intent intent = new Intent(getActivity(), ContentActivity.class);
-                                    intent.putExtra("url", href.get(position));
-                                    intent.putExtra("title", "ブログ");
-                                    startActivity(intent);
-
-
+                                    Constants.Blog.add(new FetchBlog(title.get(i), href.get(i), date.get(i)));
 
                                 }
-                            });
 
-                        } catch (JSONException e) {
-                            e.printStackTrace();
+                                ListView blogListView = (ListView) view.findViewById(R.id.list2);
+
+                                BlogListAdapter adapter = new BlogListAdapter(
+                                        getActivity(),
+                                        0,
+                                        Constants.Blog
+                                );
+
+                                blogListView.setAdapter(adapter);
+
+                                blogListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                    @Override
+                                    public void onItemClick(
+                                            AdapterView<?> parent,
+                                            View view,
+                                            int position,
+                                            long id
+                                    ) {
+
+                                        //今いるアクティビティからContentActivityへのintentを作る
+                                        Intent intent = new Intent(getActivity(), ContentActivity.class);
+                                        intent.putExtra("url", Constants.Blog.get(position).getUrl());
+                                        intent.putExtra("title", "ブログ");
+                                        startActivity(intent);
+
+
+                                    }
+                                });
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
                         }
-                    }
 
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                    }
-                }));
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                        }
+                    }));
+        }
+
+        else{
+            ListView blogListView = (ListView) view.findViewById(R.id.list2);
+
+            BlogListAdapter adapter = new BlogListAdapter(
+                    getActivity(),
+                    0,
+                    Constants.Blog
+            );
+
+            blogListView.setAdapter(adapter);
+
+            blogListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(
+                        AdapterView<?> parent,
+                        View view,
+                        int position,
+                        long id
+                ) {
+
+                    //今いるアクティビティからContentActivityへのintentを作る
+                    Intent intent = new Intent(getActivity(), ContentActivity.class);
+                    intent.putExtra("url", Constants.Blog.get(position).getUrl());
+                    intent.putExtra("title", "ブログ");
+                    startActivity(intent);
+
+
+                }
+            });
+
+        }
+
             return view;
         }
 }

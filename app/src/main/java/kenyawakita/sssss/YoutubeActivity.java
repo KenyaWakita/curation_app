@@ -31,69 +31,99 @@ public class YoutubeActivity extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle saveInstanceState) {
         final View view = inflater.inflate(R.layout.youtube_tab, container, false);
 
-        final ArrayList<FetchYoutube> Youtube = new ArrayList<FetchYoutube>();
-        mQueue = Volley.newRequestQueue(getActivity());
-        String url = "https://www.googleapis.com/youtube/v3/search?key=" +
-                Constants.YOUTUBE_API_KEY + "&q=" + Constants.SEARCH_KEYWORD +
-                "&part=snippet&maxResults=20&order=viewCount";//YoutubeAPIとJsonのURL
+        if(Constants.youtubeflag) {
 
-        mQueue.add(new JsonObjectRequest(Request.Method.GET, url, null,
-                new Response.Listener<JSONObject>(){
+            mQueue = Volley.newRequestQueue(getActivity());
+            String url = "https://www.googleapis.com/youtube/v3/search?key=" +
+                    Constants.YOUTUBE_API_KEY + "&q=" + Constants.SEARCH_KEYWORD +
+                    "&part=snippet&maxResults=20&order=viewCount";//YoutubeAPIとJsonのURL
 
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        try {
-                            JSONArray items = response.getJSONArray("items");
-                            ArrayList<String> title = new ArrayList<String>();
-                            final ArrayList<String> href = new ArrayList<String>();
-                            ArrayList<String> date = new ArrayList<String>();
-                            ArrayList<String> image = new ArrayList<String>();
+            mQueue.add(new JsonObjectRequest(Request.Method.GET, url, null,
+                    new Response.Listener<JSONObject>() {
 
-                            for (int i = 0;i < items.length();i++) {//youtube#videoがある個数を計算(countに代入).配列membersにいくつの要素を確保するか知るために作った
-                                JSONObject roo = items.getJSONObject(i);
-                                if(roo.getJSONObject("id").getString("kind").equals("youtube#video")) {//もし．idのkindが＝youtube#videoならばcountにプラス1をする
-                                    title.add(roo.getJSONObject("snippet").getString("title"));
-                                    href.add("https://www.youtube.com/watch?v="+roo.getJSONObject("id").getString("videoId"));
-                                    date.add(roo.getJSONObject("snippet").getString("publishedAt"));
-                                    image.add(roo.getJSONObject("snippet").getJSONObject("thumbnails").getJSONObject("medium").getString("url"));
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            try {
+                                JSONArray items = response.getJSONArray("items");
+                                ArrayList<String> title = new ArrayList<String>();
+                                final ArrayList<String> href = new ArrayList<String>();
+                                ArrayList<String> date = new ArrayList<String>();
+                                ArrayList<String> image = new ArrayList<String>();
 
-                                    Youtube.add(new FetchYoutube(title.get(i), image.get(i), date.get(i)));
+                                for (int i = 0; i < items.length(); i++) {//youtube#videoがある個数を計算(countに代入).配列membersにいくつの要素を確保するか知るために作った
+                                    JSONObject roo = items.getJSONObject(i);
+                                    if (roo.getJSONObject("id").getString("kind").equals("youtube#video")) {//もし．idのkindが＝youtube#videoならばcountにプラス1をする
+                                        title.add(roo.getJSONObject("snippet").getString("title"));
+                                        href.add("https://www.youtube.com/watch?v=" + roo.getJSONObject("id").getString("videoId"));
+                                        date.add(roo.getJSONObject("snippet").getString("publishedAt"));
+                                        image.add(roo.getJSONObject("snippet").getJSONObject("thumbnails").getJSONObject("medium").getString("url"));
+
+                                        Constants.Youtube.add(new FetchYoutube(title.get(i), href.get(i), image.get(i), date.get(i)));
+                                    }
                                 }
+
+                                ListView YoutubeListView = (ListView) view.findViewById(R.id.list4);
+
+                                ImageListAdapter adapter = new ImageListAdapter(
+                                        getActivity(),
+                                        0,
+                                        Constants.Youtube
+                                );
+                                YoutubeListView.setAdapter(adapter);
+
+                                YoutubeListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                    @Override
+                                    public void onItemClick(
+                                            AdapterView<?> parent,
+                                            View view,
+                                            int position,
+                                            long id //View id
+                                    ) {
+                                        Uri uri = Uri.parse(Constants.Youtube.get(position).getUrl());
+                                        Intent i = new Intent(Intent.ACTION_VIEW, uri);
+                                        startActivity(i);
+                                    }
+                                });
+                            } catch (JSONException e) {
+                                e.printStackTrace();
                             }
-
-                            ListView YoutubeListView = (ListView) view.findViewById(R.id.list4);
-
-                            ImageListAdapter adapter = new ImageListAdapter(
-                                    getActivity(),
-                                    0,
-                                    Youtube
-                            );
-                            YoutubeListView.setAdapter(adapter);
-
-                            YoutubeListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                                @Override
-                                public void onItemClick(
-                                        AdapterView<?> parent,
-                                        View view,
-                                        int position,
-                                        long id //View id
-                                ) {
-                                    Uri uri = Uri.parse(href.get(position));
-                                    Intent i = new Intent(Intent.ACTION_VIEW, uri);
-                                    startActivity(i);
-                                }
-                            });
-                        }catch (JSONException e){
-                            e.printStackTrace();
                         }
-                    }
-                },
-                new Response.ErrorListener() {
+                    },
+                    new Response.ErrorListener() {
 
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                    }
-                }));
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                        }
+                    }));
+        }
+
+        else{
+            ListView YoutubeListView = (ListView) view.findViewById(R.id.list4);
+
+            ImageListAdapter adapter = new ImageListAdapter(
+                    getActivity(),
+                    0,
+                    Constants.Youtube
+            );
+            YoutubeListView.setAdapter(adapter);
+
+            YoutubeListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(
+                        AdapterView<?> parent,
+                        View view,
+                        int position,
+                        long id //View id
+                ) {
+                    Uri uri = Uri.parse(Constants.Youtube.get(position).getUrl());
+                    Intent i = new Intent(Intent.ACTION_VIEW, uri);
+                    startActivity(i);
+                }
+            });
+
+        }
+
+
         return view;
     }
 }

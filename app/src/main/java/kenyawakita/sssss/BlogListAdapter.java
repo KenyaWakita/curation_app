@@ -19,7 +19,6 @@ public class BlogListAdapter extends ArrayAdapter<FetchBlog> {
     private ArrayList<FetchBlog> Blog = new ArrayList<FetchBlog>();
 
 
-    //
     // ‰Šú‰»
     public BlogListAdapter(Context context,
                              int id,

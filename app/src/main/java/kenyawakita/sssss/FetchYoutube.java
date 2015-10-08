@@ -4,12 +4,14 @@ package kenyawakita.sssss;
 public class FetchYoutube {
     private String title; //ƒ^ƒCƒgƒ‹
     private String url;  //URL
+    private String image;
     private String date;
 
 
-    public FetchYoutube(String title, String url, String date) {
+    public FetchYoutube(String title, String url, String image, String date) {
         this.title = title;
         this.url = url;
+        this.image = image;
         this.date=date;
     }
 
@@ -27,6 +29,14 @@ public class FetchYoutube {
     }
     public void setUrl(String u){
         this.url=u;
+    }
+
+    //‰æ‘œURL‚ÌŽæ“¾‚Æset
+    public String getImageUrl(){
+        return this.image;
+    }
+    public void setImageUrl(String u){
+        this.image=u;
     }
 
 

@@ -3,13 +3,15 @@ package kenyawakita.sssss;
 
 public class FetchTicket {
         private String title; //タイトル
+        private String url;
         private String loc; //場所
         private String imageurl;  //画像のURL
         private String date;
         private String price;
 
-        public FetchTicket(String title, String loc, String imageurl, String date, String price) {
+        public FetchTicket(String title, String url ,String loc, String imageurl, String date, String price) {
             this.title = title;
+            this.url = url;
             this.loc = loc;
             this.imageurl = imageurl;
             this.date = date;
@@ -23,6 +25,14 @@ public class FetchTicket {
         public void setTitle(String t){
             this.title=t;
         }
+
+        //url先の取得とset
+        public String getUrl(){
+        return this.url;
+    }
+        public void setUrl(String u){
+        this.url=u;
+    }
 
         //開催地の取得とset
         public String getLoc(){

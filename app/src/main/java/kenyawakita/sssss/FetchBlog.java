@@ -4,10 +4,12 @@ package kenyawakita.sssss;
 
 public class FetchBlog {
     private String title; //タイトル
+    private String url;
     private String date;
 
-    public FetchBlog(String title, String date) {
+    public FetchBlog(String title, String url ,String date) {
         this.title = title;
+        this.url = url;
         this.date = date;
     }
 
@@ -17,6 +19,14 @@ public class FetchBlog {
     }
     public void setTitle(String t){
         this.title=t;
+    }
+
+    //URLの取得とset
+    public String getUrl(){
+        return this.url;
+    }
+    public void setUrl(String u){
+        this.url=u;
     }
 
     //日付の取得とset

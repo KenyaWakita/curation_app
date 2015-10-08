@@ -65,9 +65,11 @@ public class NewsListAdapter extends ArrayAdapter<FetchNews> {
                 = null;
         try {
             Date = new SimpleDateFormat("yyyy-MM-dd").format(data_for_this_line.getDate());
+
         } catch (ParseException e) {
             e.printStackTrace();
         }
+
         String Site
                 = data_for_this_line.getSite();
 

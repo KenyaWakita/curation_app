@@ -1,6 +1,8 @@
 package kenyawakita.sssss;
 
 
+import android.util.Log;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -57,13 +59,14 @@ public class FetchNews {
         }
 
         //今日，更新された記事は時間(例:8:00)しか記述されていない
-        if (time.length==2)
-        {
-            Calendar cal = Calendar.getInstance();
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            certainDay= sdf.format(cal.getTime());
+        if (time.length == 2)
+            {
+                Calendar cal = Calendar.getInstance();
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                certainDay = sdf.format(cal.getTime());
 
-        }
+            }
+
 
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");

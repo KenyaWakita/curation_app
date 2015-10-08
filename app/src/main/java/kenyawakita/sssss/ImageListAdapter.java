@@ -79,7 +79,7 @@ public class ImageListAdapter extends ArrayAdapter<FetchYoutube> {
         ImageView imageView = (ImageView)v.findViewById(R.id.icon);
 
         // ‰æ‘œ‚ÌURL
-        String img_url = data_for_this_line.getUrl();
+        String img_url = data_for_this_line.getImageUrl();
 
 
         // ”ñ“¯Šú‚Å‰æ‘œ“Ç‚ğÀs

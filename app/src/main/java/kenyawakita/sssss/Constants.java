@@ -1,23 +1,45 @@
 package kenyawakita.sssss;
 
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+
 public class Constants {//staticはコンスタンスを作らなくても参照できる
-    //チケットタブのチケットのURL
-    public static final String TICKET_CAMP_URL="https://www.kimonolabs.com/api/29egd7hm?apikey=O1LWGKfEhBnwnOmTTuxzTO5UiTYhLuLu";
 
     //ブログタブのブログのURL
     public static final String AMEBA_URL="https://www.kimonolabs.com/api/9q0e7ovy?apikey=O1LWGKfEhBnwnOmTTuxzTO5UiTYhLuLu";
+    //ブログタブのフラグ
+    static boolean blogtflag = true;
+    //ブログリストを格納
+    static ArrayList<FetchBlog> Blog = new ArrayList<FetchBlog>();
+
+    //チケットタブのチケットのURL
+    public static final String TICKET_CAMP_URL="https://www.kimonolabs.com/api/29egd7hm?apikey=O1LWGKfEhBnwnOmTTuxzTO5UiTYhLuLu";
+    //チケットタブのフラグ
+    static boolean ticketflag = true;
+    //チケットリストを格納
+    static ArrayList<FetchTicket> Ticket = new ArrayList<FetchTicket>();
 
     //ニュースタブのニュースのURL
     public static final String ORION_URL="https://www.kimonolabs.com/api/a5jver36?apikey=O1LWGKfEhBnwnOmTTuxzTO5UiTYhLuLu";
     public static final String NAVER_URL="https://www.kimonolabs.com/api/95z4lq8w?apikey=O1LWGKfEhBnwnOmTTuxzTO5UiTYhLuLu";
     public static final String NATARY_URL="https://www.kimonolabs.com/api/acrprn9c?apikey=O1LWGKfEhBnwnOmTTuxzTO5UiTYhLuLu";
-
     //Jsonの返り値のpropaty
     public static final String PROPERTY = "property1";
+    //ニュースタブのフラグ
+    static boolean Newsflag = true;
+   //ニュースサイトを格納
+   static JSONObject[] newsSites;
+
 
     //Youtube
     public static final String YOUTUBE_API_KEY = "AIzaSyCcfEgQ_6qLIV5STXnZnLo040NzEmZuVZ4";
     public static final String SEARCH_KEYWORD = "J%20Soul%20Brothers%22";
+    //youtubeタブのフラグ
+    static boolean youtubeflag = true;
+    //Youtubeリストを格納
+    static ArrayList<FetchYoutube> Youtube = new ArrayList<FetchYoutube>();
+
 
     //その他
     public static final String OFFICIAL_WEBSITE =  "http://www.jsoulb.jp/";
