@@ -44,33 +44,41 @@ public class FetchNews {
         String certainDay =this.date;
         String[] year = certainDay.split("年", 0);//year[0]に年をyear[1]に月と日を格納(フォーマットが"yyyy-MM-dd"であれば，すべてyear[0]に格納される)
         String[] time = certainDay.split(":",0);//time[0]に時間をtime[1]に分を格納(フォーマットが"yyyy-MM-dd"であれば，すべてtime[0]に格納される)
-
+        Date cdDate;
 
          /*
         date型のフォーマットを""yyyy-MM-dd"に統一したい
-
          */
-        if (year.length==2)//”yyyy年MM月dd日”であるとき，year.length==2であるはず
+
+        //”yyyy年MM月dd日”であるとき，year.length==2であるはず
+        if (year.length==2)
         {
             String[] month = year[1].split("月", 0); //month[0]に月を，month[1]に"○○日"
             String[] day = month[1].split("日", 0); //day[0]に日を
 
             certainDay =year[0]+"-"+month[0]+"-"+day[0];
+
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            cdDate = sdf.parse(certainDay);
         }
 
-        //今日，更新された記事は時間(例:8:00)しか記述されていない
-        if (time.length == 2)
+        else {
+            //もし，今日の記事だったら，更新された記事は時間(例:8:00)しか記述されていない
+            if (time.length == 2)
             {
+                //今日の日付をSteing型yyyy-MM--ddでかえす
                 Calendar cal = Calendar.getInstance();
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                 certainDay = sdf.format(cal.getTime());
-
+                cdDate = sdf.parse(certainDay);
             }
 
-
-
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        Date cdDate = sdf.parse(certainDay);
+            //yyyy-mm-ddのフォーマットでの日付だった場合
+            else {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                cdDate = sdf.parse(certainDay);
+            }
+        }
 
         return cdDate;
     }
