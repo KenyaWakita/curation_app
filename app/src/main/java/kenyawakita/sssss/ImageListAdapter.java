@@ -69,7 +69,7 @@ public class ImageListAdapter extends ArrayAdapter<FetchYoutube> {
         Log.d("ListViewTest", position + "‚Ìtext‚Í" + Title);
         TextView tv = (TextView)v.findViewById(R.id.title);
         tv.setText(Title);
-        TextView loc = (TextView)v.findViewById(R.id.date);
+        TextView loc = (TextView)v.findViewById(R.id.loc);
         loc.setText(Date);
 
 

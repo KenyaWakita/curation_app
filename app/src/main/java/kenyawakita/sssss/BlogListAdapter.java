@@ -68,7 +68,7 @@ public class BlogListAdapter extends ArrayAdapter<FetchBlog> {
         //textview‚Éset
         TextView title = (TextView)v.findViewById(R.id.title);
         title.setText(Title);
-        TextView date = (TextView)v.findViewById(R.id.date);
+        TextView date = (TextView)v.findViewById(R.id.loc);
         date.setText(Date);
 
 

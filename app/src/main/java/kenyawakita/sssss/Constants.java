@@ -21,7 +21,7 @@ public class Constants {//staticはコンスタンスを作らなくても参照できる
     static ArrayList<FetchTicket> Ticket = new ArrayList<FetchTicket>();
 
     //ニュースタブのニュースのURL
-    public static final String ORION_URL="https://www.kimonolabs.com/api/a5jver36?apikey=O1LWGKfEhBnwnOmTTuxzTO5UiTYhLuLu";
+    public static final String ORICON_URL ="https://www.kimonolabs.com/api/a5jver36?apikey=O1LWGKfEhBnwnOmTTuxzTO5UiTYhLuLu";
     public static final String NAVER_URL="https://www.kimonolabs.com/api/95z4lq8w?apikey=O1LWGKfEhBnwnOmTTuxzTO5UiTYhLuLu";
     public static final String NATARY_URL="https://www.kimonolabs.com/api/acrprn9c?apikey=O1LWGKfEhBnwnOmTTuxzTO5UiTYhLuLu";
     //Jsonの返り値のpropaty
@@ -35,6 +35,12 @@ public class Constants {//staticはコンスタンスを作らなくても参照できる
     //Youtube
     public static final String YOUTUBE_API_KEY = "AIzaSyCcfEgQ_6qLIV5STXnZnLo040NzEmZuVZ4";
     public static final String SEARCH_KEYWORD = "J%20Soul%20Brothers%22";
+    public static final String YOUTUBE_URL ="https://www.googleapis.com/youtube/v3/search?key=" +
+            Constants.YOUTUBE_API_KEY + "&q=" + Constants.SEARCH_KEYWORD +
+            "&part=snippet&maxResults=20&order=viewCount";
+    public static  String NEXT_TOKEN_URL;
+    public static  boolean RENZOKUCANCEL=true;
+
     //youtubeタブのフラグ
     static boolean youtubeflag = true;
     //Youtubeリストを格納

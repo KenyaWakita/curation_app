@@ -77,7 +77,7 @@ public class NewsListAdapter extends ArrayAdapter<FetchNews> {
         //textviewにset
         TextView title = (TextView)v.findViewById(R.id.title);
         title.setText(Title);
-        TextView date = (TextView)v.findViewById(R.id.date);
+        TextView date = (TextView)v.findViewById(R.id.loc);
         date.setText(Date);
         TextView site = (TextView)v.findViewById(R.id.site);
         site.setText(Site);

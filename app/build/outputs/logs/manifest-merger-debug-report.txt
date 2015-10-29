@@ -24,6 +24,8 @@ MERGED from com.android.support:support-v4:22.2.0:22:5
 MERGED from com.android.support:appcompat-v7:22.2.0:22:5
 MERGED from com.android.support:support-v4:22.2.0:22:5
 MERGED from sssss:volley:unspecified:9:5
+MERGED from com.github.chrisbanes.actionbarpulltorefresh:library:0.9.9:3:5
+MERGED from com.github.castorflex.smoothprogressbar:library:0.4.0:5:5
 	android:label
 		ADDED from AndroidManifest.xml:10:9
 	android:allowBackup
@@ -61,6 +63,8 @@ MERGED from com.android.support:support-v4:22.2.0:20:5
 MERGED from com.android.support:appcompat-v7:22.2.0:20:5
 MERGED from com.android.support:support-v4:22.2.0:20:5
 MERGED from sssss:volley:unspecified:7:5
+MERGED from com.github.chrisbanes.actionbarpulltorefresh:library:0.9.9:2:5
+MERGED from com.github.castorflex.smoothprogressbar:library:0.4.0:3:5
 	android:targetSdkVersion
 		INJECTED from AndroidManifest.xml:0:0
 		INJECTED from AndroidManifest.xml:0:0

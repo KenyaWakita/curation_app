@@ -76,14 +76,12 @@ public class AsyncHttpRequest_Tab3 extends AsyncTask<String, Void, String> {
                        href.add(roo.getString("url"));
 
                         try {
-                            newsList.add(new FetchNews(roo.getJSONObject(property).getString("text"), roo.getJSONObject(property).getString("href"), roo.getString("pubDate"), Constants.newsSites[i].getString("name")));
+                            newsList.add(new FetchNews(roo.getJSONObject(property).getString("text"), roo.getJSONObject(property).getString("href"), roo.getJSONObject("pubDate").getString("text"), Constants.newsSites[i].getString("name")));
                         } catch (Exception e) {
-                            newsList.add(new FetchNews(roo.getString(property), roo.getString("url"), roo.getString("pubDate"), Constants.newsSites[i].getString("name")));
+                            newsList.add(new FetchNews(roo.getJSONObject(property).getString("text"), roo.getJSONObject(property).getString("href"), roo.getString("pubDate"), Constants.newsSites[i].getString("name")));
                         }
                     }
                 }
-
-
 
 
             } catch (JSONException e) {
