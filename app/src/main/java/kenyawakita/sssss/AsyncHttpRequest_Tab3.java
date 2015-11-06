@@ -61,10 +61,7 @@ public class AsyncHttpRequest_Tab3 extends AsyncTask<String, Void, String> {
 
     @Override
     protected void onPostExecute(String result) {
-        ArrayList<String> title = new ArrayList<String>();
-        final ArrayList<String> href = new ArrayList<String>();
-        ArrayList<String> date = new ArrayList<String>();
-        ArrayList<String> site = new ArrayList<String>();
+
         final String property = Constants.PROPERTY;
 
             try {
@@ -72,8 +69,6 @@ public class AsyncHttpRequest_Tab3 extends AsyncTask<String, Void, String> {
                     JSONArray contents = Constants.newsSites[i].getJSONObject("results").getJSONArray("collection1");
                     for (int j = 0; j < contents.length(); j++) {
                         JSONObject roo = contents.getJSONObject(j);
-
-                       href.add(roo.getString("url"));
 
                         try {
                             newsList.add(new FetchNews(roo.getJSONObject(property).getString("text"), roo.getJSONObject(property).getString("href"), roo.getJSONObject("pubDate").getString("text"), Constants.newsSites[i].getString("name")));

@@ -25,6 +25,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class YoutubeActivity extends Fragment {
 
@@ -34,6 +35,19 @@ public class YoutubeActivity extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle saveInstanceState) {
         final View view = inflater.inflate(R.layout.youtube_tab, container, false);
+
+        //ランダム関数1～5
+        //youtubeタブを表示したとき，5分の1の確率で広告が表示される
+        Random r = new Random();
+        int n = r.nextInt(5);
+
+        if(n==1){
+            //広告実装
+            com.ad_stir.interstitial.AdstirInterstitial interstitial = new com.ad_stir.interstitial.AdstirInterstitial("MEDIA-cef73fb7",1);
+            interstitial.load();
+            interstitial.showTypeA(getActivity());
+        }
+
 
         if(Constants.youtubeflag) {
 

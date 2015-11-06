@@ -1,10 +1,12 @@
-<LinearLayout
+<FrameLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
     tools:context=".MainActivity"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
+
+
     <android.support.v4.view.ViewPager
         android:id="@+id/pager"
         android:layout_width="match_parent"
@@ -18,5 +20,18 @@
         <!--android:textColor="#FFFFFF"-->
         <!--android:paddingTop="10dp"-->
         <!--android:paddingBottom="10dp" />-->
+
+
     </android.support.v4.view.ViewPager>
-</LinearLayout>
+
+    <com.ad_stir.webview.AdstirMraidView
+        media="MEDIA-8f52fd45"
+        spot="1"
+        adsize="350,50"
+        refresh_interval="5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"/>
+
+
+</FrameLayout>
