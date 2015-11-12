@@ -2,7 +2,7 @@
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:context="com.example.kenyawakita.sssss.ContentActivity">
+                tools:context="com.example.kenyawakita.musi_king.ContentActivity">
 
 
     <WebView
@@ -11,4 +11,4 @@
         android:id="@+id/webView"
         android:layout_alignParentEnd="true"/>
 </RelativeLayout>
-<!-- From: file:/C:/Users/kenyawakita/AndroidStudioProjects/sssss/app/src/main/res/layout/activity_content.xml -->
+<!-- From: file:/Users/itosouplus/Desktop/curation_app/app/src/main/res/layout/activity_content.xml -->

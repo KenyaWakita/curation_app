@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="kenyawakita.sssss.test">
+    package="kenyawakita.musi_king.test">
 
     <uses-sdk android:minSdkVersion="21" android:targetSdkVersion="22" />
 
@@ -9,8 +9,8 @@
     </application>
 
     <instrumentation android:name="android.test.InstrumentationTestRunner"
-                     android:targetPackage="kenyawakita.sssss"
+                     android:targetPackage="kenyawakita.musi_king"
                      android:handleProfiling="false"
                      android:functionalTest="false"
-                     android:label="Tests for kenyawakita.sssss"/>
+                     android:label="Tests for kenyawakita.musi_king"/>
 </manifest>

@@ -24,14 +24,7 @@
 
     </android.support.v4.view.ViewPager>
 
-    <com.ad_stir.webview.AdstirMraidView
-        media="MEDIA-8f52fd45"
-        spot="1"
-        adsize="350,50"
-        refresh_interval="5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|center_horizontal"/>
 
 
-</FrameLayout><!-- From: file:/C:/Users/kenyawakita/AndroidStudioProjects/sssss/app/src/main/res/layout/activity_main.xml -->
+
+</FrameLayout><!-- From: file:/Users/itosouplus/Desktop/curation_app/app/src/main/res/layout/activity_main.xml -->
