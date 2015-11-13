@@ -12,21 +12,22 @@ public class Constants {//static�̓R���X�^���X�����Ȃ�
     static boolean blogtflag = true;
     static boolean ticketflag = true;
     static boolean Newsflag = true;
+    static boolean bordflag = true;
+
     //�u���O���X�g���i�[
     static ArrayList<FetchBlog> Blog = new ArrayList<FetchBlog>();
-    static ArrayList<FetchNews> news = new ArrayList<FetchNews>();
+    static ArrayList<FetchNews> Bord = new ArrayList<FetchNews>();
     static ArrayList<FetchNews> news_sites = new ArrayList<FetchNews>();
     static ArrayList<FetchTicket> Ticket = new ArrayList<FetchTicket>();
     static ArrayList<FetchYoutube> youtube = new ArrayList<FetchYoutube>();
     static ArrayList<FetchYoutube> youtube_channel = new ArrayList<FetchYoutube>();
     static JSONObject[] newsSites;
 
-    //�`�P�b�g�^�u�̃`�P�b�g��URL
+    //JsoulのチケットキャンプのURL
     public static final String TICKET_CAMP_URL="https://www.kimonolabs.com/api/29egd7hm?apikey=O1LWGKfEhBnwnOmTTuxzTO5UiTYhLuLu";
 
-    //�j���[�X�^�u�̃j���[�X��URL
+    //ムシキングのニュースサイトのURL
     public static final String NEWS_SITE1 = Constants.kimono_prev + "d55vqhbw" + Constants.kimono_next;
-
 
     public static final String ORICON_URL ="https://www.kimonolabs.com/api/a5jver36?apikey=O1LWGKfEhBnwnOmTTuxzTO5UiTYhLuLu";
     public static final String NAVER_URL="https://www.kimonolabs.com/api/95z4lq8w?apikey=O1LWGKfEhBnwnOmTTuxzTO5UiTYhLuLu";
@@ -38,6 +39,8 @@ public class Constants {//static�̓R���X�^���X�����Ȃ�
     public static final String BANNER_MEDIA_ID = "MEDIA-2b84dc9e";
     public static final int SPOT = 1;
 
+    //Bord
+    public static final String BORD_URL = "https://www.kimonolabs.com/api/3nq0ehse?apikey=O1LWGKfEhBnwnOmTTuxzTO5UiTYhLuLu";
 
     //Youtube
     public static final String YOUTUBE_API_KEY = "AIzaSyCcfEgQ_6qLIV5STXnZnLo040NzEmZuVZ4";
@@ -56,7 +59,7 @@ public class Constants {//static�̓R���X�^���X�����Ȃ�
     //Youtube���X�g���i�[
 
 
-    //���̑�
+    //その他
     public static final String OFFICIAL_WEBSITE =  "http://www.jsoulb.jp/";
     public static final String FB =  "https://www.facebook.com/jsoulb3";
     public static final String GOODS =  "http://www.exiletribestation.jp/onlineshop/";
