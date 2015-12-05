@@ -18,7 +18,6 @@ public class YoutubeActivity extends Fragment {
     private RequestQueue mQueue;
     boolean next=true;
 
-
     @Override
     public void setArguments(Bundle args) {
         super.setArguments(args);

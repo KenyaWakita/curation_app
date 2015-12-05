@@ -28,4 +28,5 @@ dependencies {
     compile files('libs/adstirwebview.jar')
     compile 'com.google.android.gms:play-services:+'
     compile 'com.android.support:support-v4:22.2.0'
+    compile 'com.google.android.gms:play-services:7.3.0'
 }

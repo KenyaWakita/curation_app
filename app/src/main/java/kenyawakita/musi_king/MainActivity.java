@@ -13,6 +13,7 @@ import android.support.v4.view.ViewPager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.gms.analytics.HitBuilders;
 
 
 public class MainActivity extends Activity implements ActionBar.TabListener {
@@ -26,6 +27,7 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
      * {@link android.support.v13.app.FragmentStatePagerAdapter}.
      */
     SectionsPagerAdapter mSectionsPagerAdapter;
+    AnalyticsApplication application;
 
     ViewPager mViewPager;
 
@@ -33,6 +35,9 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        application = (AnalyticsApplication) getApplication();
 
         final ActionBar actionBar = getActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
@@ -125,12 +130,20 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
 
             switch (position) {
                 case 0:
+                    application.tracker.setScreenName("ニュース");
+                    application.tracker.send(new HitBuilders.ScreenViewBuilder().build());
                     return new NewsActivity();
                 case 1:
+                    application.tracker.setScreenName("カードリスト");
+                    application.tracker.send(new HitBuilders.ScreenViewBuilder().build());
                     return new OtherActivity();
                 case 2:
+                    application.tracker.setScreenName("掲示板");
+                    application.tracker.send(new HitBuilders.ScreenViewBuilder().build());
                     return new BoardFragment();
                 case 3:
+                    application.tracker.setScreenName("プレイ動画");
+                    application.tracker.send(new HitBuilders.ScreenViewBuilder().build());
                     YoutubeActivity youtube = new YoutubeActivity();
                     Bundle bundle = new Bundle();
                     bundle.putString("url", Constants.YOUTUBE_URL);
@@ -138,9 +151,12 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
                     youtube.setArguments(bundle);
                     return youtube;
                 case 4:
+                    application.tracker.setScreenName("ムシチャンネル");
+                    application.tracker.send(new HitBuilders.ScreenViewBuilder().build());
                     YoutubeActivity youtube_channel = new YoutubeActivity();
                     Bundle bundle_url = new Bundle();
                     bundle_url.putString("url", Constants.YOUTUBE_CHANNEL_URL);
+
                     youtube_channel.setArguments(bundle_url);
                     return youtube_channel;
             }

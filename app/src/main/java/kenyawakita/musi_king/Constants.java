@@ -45,7 +45,6 @@ public class Constants {//static�̓R���X�^���X�����Ȃ�
     public static final String CHANNEL_ID = "UCoObuRNP0OjE5ILcOAhXZIg";
 
     public static final String YOUTUBE_URL ="https://www.googleapis.com/youtube/v3/search?key=" + Constants.YOUTUBE_API_KEY + "&q=" + Constants.SEARCH_KEYWORD + "&part=snippet&maxResults=20&order=viewCount";
-    //public static final String YOUTUBE_CHANNEL_URL = "https://www.googleapis.com/youtube/v3/search?key=" + Constants.YOUTUBE_API_KEY + "&q=" + "紅茶" + "&part=snippet&maxResults=20&order=viewCount";
     public static final String YOUTUBE_CHANNEL_URL = "https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=" + Constants.CHANNEL_ID + "&maxResults=30&key=" + Constants.YOUTUBE_API_KEY;
 
     public static  String NEXT_TOKEN_URL;

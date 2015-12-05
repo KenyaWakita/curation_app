@@ -23,8 +23,6 @@ import java.util.ArrayList;
 
 
 public class RequestVolley {
-
-
     public static void fetchFromBoard(final Activity activity, final View view, final String url) {
         RequestQueue mQueue = Volley.newRequestQueue(activity);
         mQueue.add(new JsonObjectRequest(Request.Method.GET, url, null,

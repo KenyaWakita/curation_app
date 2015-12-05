@@ -54,13 +54,14 @@ public class BlogActivity extends Fragment {
                         mPulltoRefresh.setRefreshComplete();
                     }
                 }).setup(mPulltoRefresh);
-            if (Constants.blogtflag) {
-                RequestVolley.fetchFromBlog(getActivity(), view);
-            } else {
-                setAdapter();
-            }
-            return view;
+
+        if (Constants.blogtflag) {
+            RequestVolley.fetchFromBlog(getActivity(), view);
+        } else {
+            setAdapter();
         }
+        return view;
+    }
 
     public void setAdapter() {
         BlogListAdapter adapter = new BlogListAdapter(

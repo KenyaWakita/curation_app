@@ -26,6 +26,7 @@ public class NewsActivity extends Fragment {
         final ListView newsListView = (ListView) view.findViewById(R.id.list3);
 
 
+
         com.ad_stir.webview.AdstirMraidView adView = new com.ad_stir.webview.AdstirMraidView(
                 owner,
                 Constants.BANNER_MEDIA_ID,
