@@ -67,7 +67,7 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
         tab2.setTabListener(this);
         actionBar.addTab(tab2);
         TextView textView2 = (TextView) findViewById(R.id.tab2_title);
-        textView2.setText("カードリスト");
+        textView2.setText("掲示板");
         ImageView image2 = (ImageView) findViewById(R.id.tab2_icon);
         image2.setImageResource(R.drawable.tag79);
 
@@ -77,7 +77,7 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
         tab3.setTabListener(this);
         actionBar.addTab(tab3);
         TextView textView3 = (TextView) findViewById(R.id.tab3_title);
-        textView3.setText("掲示板");
+        textView3.setText("デッキレシピ");
         ImageView image3 = (ImageView) findViewById(R.id.tab3_icon);
         image3.setImageResource(R.drawable.blog1);
 
@@ -87,7 +87,7 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
         tab4.setTabListener(this);
         actionBar.addTab(tab4);
         TextView textView4 = (TextView) findViewById(R.id.tab4_title);
-        textView4.setText("プレイ動画");
+        textView4.setText("対戦動画");
         ImageView image4 = (ImageView) findViewById(R.id.tab4_icon);
         image4.setImageResource(R.drawable.video107);
 
@@ -96,7 +96,7 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
         tab5.setTabListener(this);
         actionBar.addTab(tab5);
         TextView textView5 = (TextView) findViewById(R.id.tab5_title);
-        textView5.setText("ムシチャンネル");
+        textView5.setText("カードリスト");
         ImageView image5 = (ImageView) findViewById(R.id.tab5_icon);
         image5.setImageResource(R.drawable.stag);
 
@@ -134,15 +134,15 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
                     application.tracker.send(new HitBuilders.ScreenViewBuilder().build());
                     return new NewsActivity();
                 case 1:
-                    application.tracker.setScreenName("カードリスト");
+                    application.tracker.setScreenName("掲示板");
                     application.tracker.send(new HitBuilders.ScreenViewBuilder().build());
                     return new OtherActivity();
                 case 2:
-                    application.tracker.setScreenName("掲示板");
+                    application.tracker.setScreenName("デッキレシピ");
                     application.tracker.send(new HitBuilders.ScreenViewBuilder().build());
                     return new BoardFragment();
                 case 3:
-                    application.tracker.setScreenName("プレイ動画");
+                    application.tracker.setScreenName("対戦動画");
                     application.tracker.send(new HitBuilders.ScreenViewBuilder().build());
                     YoutubeActivity youtube = new YoutubeActivity();
                     Bundle bundle = new Bundle();
@@ -151,7 +151,7 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
                     youtube.setArguments(bundle);
                     return youtube;
                 case 4:
-                    application.tracker.setScreenName("ムシチャンネル");
+                    application.tracker.setScreenName("カードリスト");
                     application.tracker.send(new HitBuilders.ScreenViewBuilder().build());
                     YoutubeActivity youtube_channel = new YoutubeActivity();
                     Bundle bundle_url = new Bundle();
