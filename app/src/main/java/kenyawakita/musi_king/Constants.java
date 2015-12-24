@@ -56,7 +56,13 @@ public class Constants {//static�̓R���X�^���X�����Ȃ�
 
     //youtube�^�u�̃t���O
     static boolean youtubeflag = true;
-    //Youtube���X�g���i�[
+
+
+    //webviewfragmentに表示するURL
+    public static final String APP_RANK_ANDROID_URL ="https://androider.jp/official/applist/ranking/total/daily/1/";
+    public static final String APP_RANK_IPHONE_URL = "http://topappranking300.appios.net/top-free-iphone/index.html";
+    public static final String APP_RANK_ANDROID_ARTICLE_URL ="http://weekly.ascii.jp/rank/AndroidDaily.html";
+    public static final String APP_RANK_IPHONE_ARTICLE_URL ="http://weekly.ascii.jp/rank/AppleDaily.html";
 
 
     //その他

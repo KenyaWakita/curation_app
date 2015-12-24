@@ -354,4 +354,9 @@ public class RequestVolley {
             }
         });
     }
+
+    public static void webview(final Activity activity, View view, final RequestQueue mQueue, final String URL) {
+
+    }
+
 }

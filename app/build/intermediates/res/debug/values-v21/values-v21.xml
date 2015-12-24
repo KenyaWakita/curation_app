@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- From: file:/Users/kenyawakita/Documents/curation_app/app/src/main/res/values-v21/styles.xml -->
+    <!-- From: file:/Users/kenyawakita/AndroidStudioProjects/curation_app/app/src/main/res/values-v21/styles.xml -->
     <eat-comment/>
     <style name="AppTheme" parent="android:Theme.Material.Light.DarkActionBar">
     </style>
-    <!-- From: file:/Users/kenyawakita/Documents/curation_app/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values-v21/values-v21.xml -->
+    <!-- From: file:/Users/kenyawakita/AndroidStudioProjects/curation_app/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values-v21/values-v21.xml -->
     <eat-comment/>
     <style name="Base.TextAppearance.AppCompat" parent="android:TextAppearance.Material"/>
     <style name="Base.TextAppearance.AppCompat.Body1" parent="android:TextAppearance.Material.Body1"/>

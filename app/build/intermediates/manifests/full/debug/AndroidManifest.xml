@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="kenyawakita.musi_king"
+    package="kenyawakita.app_rank"
     android:versionCode="3"
     android:versionName="1.0" >
 
@@ -68,7 +68,7 @@
 
         <provider
             android:name="com.google.android.gms.measurement.AppMeasurementContentProvider"
-            android:authorities="kenyawakita.musi_king.google_measurement_service"
+            android:authorities="kenyawakita.app_rank.google_measurement_service"
             android:exported="false" />
 
         <receiver

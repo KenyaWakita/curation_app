@@ -14,11 +14,11 @@
 //        Log.d("log", String.valueOf(i));
 //        switch(i){
 //            case 0:
-//                return new TicketActivity();
+//                return new TicketFragment();
 //            case 1:
-//                return new BlogActivity();
+//                return new BlogFragment();
 //            default:
-//                return new NewsActivity();
+//                return new NewsFragment();
 //        }
 //    }
 //    @Override public int getCount() {

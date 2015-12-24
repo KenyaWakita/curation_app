@@ -52,8 +52,6 @@ public class AsyncHttpRequest_Tab3 extends AsyncTask<String, Void, String> {
                 e.printStackTrace();
             }
             //一度通れば良いので，flagをfalseへ
-
-
         return "";
     }
 

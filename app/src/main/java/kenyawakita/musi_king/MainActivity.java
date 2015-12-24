@@ -14,7 +14,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 
-
 public class MainActivity extends Activity implements ActionBar.TabListener {
 
     /**
@@ -53,18 +52,18 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
         tab.setTabListener(this);
         actionBar.addTab(tab);
         TextView textView = (TextView) findViewById(R.id.tab1_title);
-        textView.setText("ニュース");
+        textView.setText("Androidランキング");
         ImageView image = (ImageView) findViewById(R.id.tab1_icon);
-        image.setImageResource(R.drawable.newspaper9);
+        image.setImageResource(R.drawable.android);
 
         ActionBar.Tab tab2 =actionBar.newTab();
         tab2.setCustomView(R.layout.tab2);
         tab2.setTabListener(this);
         actionBar.addTab(tab2);
         TextView textView2 = (TextView) findViewById(R.id.tab2_title);
-        textView2.setText("カードリスト");
+        textView2.setText("iphoneランキング");
         ImageView image2 = (ImageView) findViewById(R.id.tab2_icon);
-        image2.setImageResource(R.drawable.tag79);
+        image2.setImageResource(R.drawable.apple);
 
 
         ActionBar.Tab tab3 =actionBar.newTab();
@@ -72,9 +71,9 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
         tab3.setTabListener(this);
         actionBar.addTab(tab3);
         TextView textView3 = (TextView) findViewById(R.id.tab3_title);
-        textView3.setText("掲示板");
+        textView3.setText("Androidニュース");
         ImageView image3 = (ImageView) findViewById(R.id.tab3_icon);
-        image3.setImageResource(R.drawable.blog1);
+        image3.setImageResource(R.drawable.android);
 
 
         ActionBar.Tab tab4 =actionBar.newTab();
@@ -82,18 +81,9 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
         tab4.setTabListener(this);
         actionBar.addTab(tab4);
         TextView textView4 = (TextView) findViewById(R.id.tab4_title);
-        textView4.setText("プレイ動画");
+        textView4.setText("iphoneニュース");
         ImageView image4 = (ImageView) findViewById(R.id.tab4_icon);
-        image4.setImageResource(R.drawable.video107);
-
-        ActionBar.Tab tab5 =actionBar.newTab();
-        tab5.setCustomView(R.layout.tab5);
-        tab5.setTabListener(this);
-        actionBar.addTab(tab5);
-        TextView textView5 = (TextView) findViewById(R.id.tab5_title);
-        textView5.setText("ムシチャンネル");
-        ImageView image5 = (ImageView) findViewById(R.id.tab5_icon);
-        image5.setImageResource(R.drawable.stag);
+        image4.setImageResource(R.drawable.apple);
 
     }
 
@@ -125,31 +115,36 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
 
             switch (position) {
                 case 0:
-                    return new NewsActivity();
+                    WebviewFragment app_rank_android = new WebviewFragment();
+                    Bundle bundle_and = new Bundle();
+                    bundle_and.putString("url", Constants.APP_RANK_ANDROID_URL);
+                    app_rank_android.setArguments(bundle_and);
+                    return app_rank_android;
                 case 1:
-                    return new OtherActivity();
+                    WebviewFragment app_rank_iphone = new WebviewFragment();
+                    Bundle bundle_ipho = new Bundle();
+                    bundle_ipho.putString("url", Constants.APP_RANK_IPHONE_URL);
+                    app_rank_iphone.setArguments(bundle_ipho);
+                    return app_rank_iphone;
                 case 2:
-                    return new BoardFragment();
+                    WebviewFragment app_rank_android_article = new WebviewFragment();
+                    Bundle bundle_andart = new Bundle();
+                    bundle_andart.putString("url", Constants.APP_RANK_ANDROID_ARTICLE_URL);
+                    app_rank_android_article.setArguments(bundle_andart);
+                    return app_rank_android_article;
                 case 3:
-                    YoutubeActivity youtube = new YoutubeActivity();
-                    Bundle bundle = new Bundle();
-                    bundle.putString("url", Constants.YOUTUBE_URL);
-
-                    youtube.setArguments(bundle);
-                    return youtube;
-                case 4:
-                    YoutubeActivity youtube_channel = new YoutubeActivity();
-                    Bundle bundle_url = new Bundle();
-                    bundle_url.putString("url", Constants.YOUTUBE_CHANNEL_URL);
-                    youtube_channel.setArguments(bundle_url);
-                    return youtube_channel;
+                    WebviewFragment app_rank_iphone_article = new WebviewFragment();
+                    Bundle bundle_iphoart = new Bundle();
+                    bundle_iphoart.putString("url", Constants.APP_RANK_IPHONE_ARTICLE_URL);
+                    app_rank_iphone_article.setArguments(bundle_iphoart);
+                    return app_rank_iphone_article;
             }
             return null;
         }
 
         @Override
         public int getCount() {
-            return 5;
+            return 4;
         }
 
         @Override
