@@ -32,7 +32,7 @@ public class AsyncHttpRequest_Tab3 extends AsyncTask<String, Void, String> {
 
     @Override
     protected String doInBackground(String... url) {
-        if (Constants.Newsflag) {
+
             try {
                 Constants.newsSites = new JSONObject[url.length];
                 for (int i = 0; i < url.length; i++) {
@@ -52,8 +52,8 @@ public class AsyncHttpRequest_Tab3 extends AsyncTask<String, Void, String> {
                 e.printStackTrace();
             }
             //一度通れば良いので，flagをfalseへ
-            //Constants.Newsflag=false;
-        }
+
+
         return "";
     }
 
@@ -85,7 +85,7 @@ public class AsyncHttpRequest_Tab3 extends AsyncTask<String, Void, String> {
         NewsListAdapter adapter = new NewsListAdapter(
                 owner,
                 0,
-                newsList
+                Constants.news_sites
         );
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -97,7 +97,7 @@ public class AsyncHttpRequest_Tab3 extends AsyncTask<String, Void, String> {
                     long id //View id
             ) {
                 Intent intent = new Intent(owner, ContentActivity.class);
-                intent.putExtra("url", newsList.get(position).getUrl());
+                intent.putExtra("url", Constants.news_sites.get(position).getUrl());
                 intent.putExtra("title", "ニュース");
                 owner.startActivity(intent);
             }

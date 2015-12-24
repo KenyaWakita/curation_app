@@ -23,6 +23,81 @@ import java.util.ArrayList;
 
 
 public class RequestVolley {
+
+    public static void fetchFromTicket(final Activity activity, final View view, final String url){
+        RequestQueue mQueue = Volley.newRequestQueue(activity);
+        mQueue.add(new JsonObjectRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            JSONArray collection = response.getJSONObject("results").getJSONArray("collection1");
+
+                            ArrayList<String> title = new ArrayList<String>();
+                            final ArrayList<String> href = new ArrayList<String>();
+                            ArrayList<String> loc = new ArrayList<String>();
+                            ArrayList<String> date = new ArrayList<String>();
+                            ArrayList<String> image = new ArrayList<String>();
+                            ArrayList<String> price = new ArrayList<String>();
+
+                            for (int i = 0; i < collection.length(); i++) {
+
+                                JSONObject roo = collection.getJSONObject(i);
+
+                                //画像
+                                image.add(roo.getJSONObject("property1").getString("src"));
+                                //タイトル名(ツアー名)
+                                title.add(roo.getJSONObject("property2").getString("text"));
+                                //URL先
+                                href.add(roo.getJSONObject("property2").getString("href"));
+                                //日時
+                                date.add(roo.getJSONObject("property3").getString("text"));
+                                //開催地
+                                loc.add(roo.getJSONObject("property4").getString("text"));
+                                //一枚あたりの値段
+                                price.add(roo.getJSONObject("property5").getString("text"));
+
+                                Constants.Ticket.add(new FetchTicket(title.get(i), href.get(i), loc.get(i), image.get(i), date.get(i), price.get(i)));
+                            }
+
+                            ListView TicketListView = (ListView) view.findViewById(R.id.list1);
+
+                            TicketListAdapter adapter = new TicketListAdapter(
+                                    activity,
+                                    0,
+                                    Constants.Ticket
+                            );
+                            TicketListView.setAdapter(adapter);
+
+                            TicketListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                @Override
+                                public void onItemClick(
+                                        AdapterView<?> parent,
+                                        View view,
+                                        int position,
+                                        long id
+                                ) {
+                                    Intent intent = new Intent(activity, ContentActivity.class);
+                                    intent.putExtra("url", Constants.Ticket.get(position).getUrl());
+                                    intent.putExtra("title", "掲示板");
+                                    activity.startActivity(intent);
+                                }
+                            });
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                },new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+            }
+        }));
+    }
+
+
+
     public static void fetchFromBoard(final Activity activity, final View view, final String url) {
         RequestQueue mQueue = Volley.newRequestQueue(activity);
         mQueue.add(new JsonObjectRequest(Request.Method.GET, url, null,
@@ -43,14 +118,14 @@ public class RequestVolley {
                                 href.add(roo.getJSONObject("title").getString("href"));
                                 post.add(roo.getString("post"));
 
-                                Constants.news.add(new FetchNews(title.get(i), href.get(i), date.get(i), "投稿数 : " + post.get(i)));
+                                Constants.Bord.add(new FetchNews(title.get(i), href.get(i), date.get(i), "投稿数 : " + post.get(i)));
                             }
 
                             ListView blogListView = (ListView) view.findViewById(R.id.list3);
                             NewsListAdapter adapter = new NewsListAdapter(
                                     activity,
                                     0,
-                                    Constants.news
+                                    Constants.Bord
                             );
 
                             blogListView.setAdapter(adapter);
@@ -63,12 +138,11 @@ public class RequestVolley {
                                         long id
                                 ) {
                                     Intent intent = new Intent(activity, ContentActivity.class);
-                                    intent.putExtra("url", Constants.news.get(position).getUrl());
+                                    intent.putExtra("url", Constants.Bord.get(position).getUrl());
                                     intent.putExtra("title", "掲示板");
                                     activity.startActivity(intent);
                                 }
                             });
-
 
 
                         } catch (JSONException e) {
