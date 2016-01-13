@@ -3,9 +3,11 @@ package kenyawakita.musi_king;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
+import android.util.Log;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.android.volley.Request;
@@ -178,7 +180,7 @@ public class RequestVolley {
                                     Constants.Blog.add(new FetchBlog(title.get(i), href.get(i), date.get(i)));
                                 }
 
-                                ListView blogListView = (ListView) view.findViewById(R.id.list2);
+                                ListView blogListView = (ListView) view.findViewById(R.id.listview);
                                 BlogListAdapter adapter = new BlogListAdapter(
                                         activity,
                                         0,
@@ -201,7 +203,7 @@ public class RequestVolley {
                                     }
                                 });
 
-
+                                Constants.blogtflag=false;
 
                             } catch (JSONException e) {
                                 e.printStackTrace();
@@ -214,6 +216,62 @@ public class RequestVolley {
                         }
                     }));
     }
+
+    public static void fetchFromBoardType(final Activity activity, final View view, final String url,
+                                          final ArrayList<String> title, final ArrayList<String> href) {
+        RequestQueue mQueue = Volley.newRequestQueue(activity);
+        mQueue.add(new JsonObjectRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            JSONArray collection = response.getJSONObject("results").getJSONArray("collection1");
+
+
+                            for (int i = 0; i < collection.length(); i++) {
+                                JSONObject roo = collection.getJSONObject(i);
+                                title.add(roo.getJSONObject("property1").getString("text"));
+                                href.add(roo.getJSONObject("property1").getString("href"));
+
+                            }
+
+                            ListView boardtypeListView = (ListView) view.findViewById(R.id.listview);
+                            BoardTypeListAdapter adapter = new BoardTypeListAdapter(
+                                    activity,
+                                    0,
+                                    title
+                            );
+
+                            boardtypeListView.setAdapter(adapter);
+                            boardtypeListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                @Override
+                                public void onItemClick(
+                                        AdapterView<?> parent,
+                                        View view,
+                                        int position,
+                                        long id
+                                ) {
+                                    Intent intent = new Intent(activity, ContentActivity.class);
+                                    intent.putExtra("url", href.get(position));
+                                    intent.putExtra("title", "ニュース");
+                                    activity.startActivity(intent);
+                                }
+                            });
+
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                },new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+            }
+        }));
+    }
+
 
     public static void fetchFromYoutube(final Activity activity, final View view, final String URL, final ArrayList<FetchYoutube> youtube) {
         final RequestQueue mQueue = Volley.newRequestQueue(activity);

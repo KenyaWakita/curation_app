@@ -117,25 +117,31 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
                 case 0:
                     WebviewFragment app_rank_android = new WebviewFragment();
                     Bundle bundle_and = new Bundle();
+                    bundle_and.putString("Tab_Name","Androidランキング");
                     bundle_and.putString("url", Constants.APP_RANK_ANDROID_URL);
                     app_rank_android.setArguments(bundle_and);
                     return app_rank_android;
                 case 1:
                     WebviewFragment app_rank_iphone = new WebviewFragment();
                     Bundle bundle_ipho = new Bundle();
+                    bundle_ipho.putString("Tab_Name","iphoneランキング");
                     bundle_ipho.putString("url", Constants.APP_RANK_IPHONE_URL);
                     app_rank_iphone.setArguments(bundle_ipho);
                     return app_rank_iphone;
                 case 2:
-                    WebviewFragment app_rank_android_article = new WebviewFragment();
+                    BoardTypeFragment app_rank_android_article = new BoardTypeFragment();
                     Bundle bundle_andart = new Bundle();
-                    bundle_andart.putString("url", Constants.APP_RANK_ANDROID_ARTICLE_URL);
+                    bundle_andart.putStringArrayList("title",Constants.android_BoardType_title);
+                    bundle_andart.putStringArrayList("href",Constants.android_BoardType_href);
+                    bundle_andart.putString("json_url", Constants.APP_RANK_ANDROID_ARTICLE_JSON);
                     app_rank_android_article.setArguments(bundle_andart);
                     return app_rank_android_article;
                 case 3:
-                    WebviewFragment app_rank_iphone_article = new WebviewFragment();
+                    BoardTypeFragment app_rank_iphone_article = new BoardTypeFragment();
                     Bundle bundle_iphoart = new Bundle();
-                    bundle_iphoart.putString("url", Constants.APP_RANK_IPHONE_ARTICLE_URL);
+                    bundle_iphoart.putStringArrayList("title",Constants.iphone_BoardType_title);
+                    bundle_iphoart.putStringArrayList("href",Constants.iphone_BoardType_href);
+                    bundle_iphoart.putString("json_url", Constants.APP_RANK_IPHONE_ARTICLE_JSON);
                     app_rank_iphone_article.setArguments(bundle_iphoart);
                     return app_rank_iphone_article;
             }

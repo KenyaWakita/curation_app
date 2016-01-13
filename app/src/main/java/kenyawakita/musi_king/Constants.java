@@ -13,11 +13,16 @@ public class Constants {//static�̓R���X�^���X�����Ȃ�
     static boolean ticketflag = true;
     static boolean Newsflag = true;
     static boolean bordflag = true;
+    static boolean boardtypeflag = true; //用いない
 
     //�u���O���X�g���i�[
     static ArrayList<FetchBlog> Blog = new ArrayList<FetchBlog>();
     static ArrayList<FetchNews> Bord = new ArrayList<FetchNews>();
     static ArrayList<FetchNews> news_sites = new ArrayList<FetchNews>();
+    static ArrayList<String> android_BoardType_title = new ArrayList<String>();
+    static ArrayList<String> android_BoardType_href = new ArrayList<String>();
+    static ArrayList<String> iphone_BoardType_title = new ArrayList<String>();
+    static ArrayList<String> iphone_BoardType_href = new ArrayList<String>();
     static ArrayList<FetchTicket> Ticket = new ArrayList<FetchTicket>();
     static ArrayList<FetchYoutube> youtube = new ArrayList<FetchYoutube>();
     static ArrayList<FetchYoutube> youtube_channel = new ArrayList<FetchYoutube>();
@@ -47,6 +52,7 @@ public class Constants {//static�̓R���X�^���X�����Ȃ�
     public static final String SEARCH_KEYWORD = "ムシキング%20動画";
     public static final String CHANNEL_ID = "UCoObuRNP0OjE5ILcOAhXZIg";
 
+
     public static final String YOUTUBE_URL ="https://www.googleapis.com/youtube/v3/search?key=" + Constants.YOUTUBE_API_KEY + "&q=" + Constants.SEARCH_KEYWORD + "&part=snippet&maxResults=20&order=viewCount";
     //public static final String YOUTUBE_CHANNEL_URL = "https://www.googleapis.com/youtube/v3/search?key=" + Constants.YOUTUBE_API_KEY + "&q=" + "紅茶" + "&part=snippet&maxResults=20&order=viewCount";
     public static final String YOUTUBE_CHANNEL_URL = "https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=" + Constants.CHANNEL_ID + "&maxResults=30&key=" + Constants.YOUTUBE_API_KEY;
@@ -63,6 +69,12 @@ public class Constants {//static�̓R���X�^���X�����Ȃ�
     public static final String APP_RANK_IPHONE_URL = "http://topappranking300.appios.net/top-free-iphone/index.html";
     public static final String APP_RANK_ANDROID_ARTICLE_URL ="http://weekly.ascii.jp/rank/AndroidDaily.html";
     public static final String APP_RANK_IPHONE_ARTICLE_URL ="http://weekly.ascii.jp/rank/AppleDaily.html";
+
+    //BoardType アプリのアクセスランキング記事
+    public static final String APP_RANK_ANDROID_ARTICLE_JSON = "https://www.kimonolabs.com/api/b170jo58?apikey=O1LWGKfEhBnwnOmTTuxzTO5UiTYhLuLu";
+    public static final String APP_RANK_IPHONE_ARTICLE_JSON = "https://www.kimonolabs.com/api/c87xv81k?apikey=O1LWGKfEhBnwnOmTTuxzTO5UiTYhLuLu";
+
+
 
 
     //その他

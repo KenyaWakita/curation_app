@@ -13,7 +13,6 @@ import com.android.volley.RequestQueue;
 
 import java.util.Random;
 
-import kenyawakita.musi_king.R;
 import uk.co.senab.actionbarpulltorefresh.library.ActionBarPullToRefresh;
 import uk.co.senab.actionbarpulltorefresh.library.Options;
 import uk.co.senab.actionbarpulltorefresh.library.PullToRefreshLayout;
@@ -30,7 +29,7 @@ public class BlogFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle saveInstanceState) {
          final View view = inflater.inflate(R.layout.blog_tab, container, false);
         mPulltoRefresh = (PullToRefreshLayout) view.findViewById(R.id.pull_to);
-        blogListView = (ListView) view.findViewById(R.id.list2);
+        blogListView = (ListView) view.findViewById(R.id.listview);
         //ランダム関数1～5
         //ブログタブを表示したとき，5分の1の確率で広告が表示される
         Random r = new Random();
