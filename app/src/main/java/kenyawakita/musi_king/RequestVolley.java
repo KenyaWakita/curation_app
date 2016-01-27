@@ -3,11 +3,9 @@ package kenyawakita.musi_king;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
-import android.util.Log;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.android.volley.Request;
@@ -62,7 +60,7 @@ public class RequestVolley {
                                 Constants.Ticket.add(new FetchTicket(title.get(i), href.get(i), loc.get(i), image.get(i), date.get(i), price.get(i)));
                             }
 
-                            ListView TicketListView = (ListView) view.findViewById(R.id.list1);
+                            ListView TicketListView = (ListView) view.findViewById(R.id.listview);
 
                             TicketListAdapter adapter = new TicketListAdapter(
                                     activity,
@@ -79,7 +77,7 @@ public class RequestVolley {
                                         int position,
                                         long id
                                 ) {
-                                    Intent intent = new Intent(activity, ContentActivity.class);
+                                    Intent intent = new Intent(activity, WebviewActivity.class);
                                     intent.putExtra("url", Constants.Ticket.get(position).getUrl());
                                     intent.putExtra("title", "掲示板");
                                     activity.startActivity(intent);
@@ -123,7 +121,7 @@ public class RequestVolley {
                                 Constants.Bord.add(new FetchNews(title.get(i), href.get(i), date.get(i), "投稿数 : " + post.get(i)));
                             }
 
-                            ListView blogListView = (ListView) view.findViewById(R.id.list3);
+                            ListView blogListView = (ListView) view.findViewById(R.id.listview);
                             NewsListAdapter adapter = new NewsListAdapter(
                                     activity,
                                     0,
@@ -139,7 +137,7 @@ public class RequestVolley {
                                         int position,
                                         long id
                                 ) {
-                                    Intent intent = new Intent(activity, ContentActivity.class);
+                                    Intent intent = new Intent(activity, WebviewActivity.class);
                                     intent.putExtra("url", Constants.Bord.get(position).getUrl());
                                     intent.putExtra("title", "掲示板");
                                     activity.startActivity(intent);
@@ -196,7 +194,7 @@ public class RequestVolley {
                                             int position,
                                             long id
                                     ) {
-                                        Intent intent = new Intent(activity, ContentActivity.class);
+                                        Intent intent = new Intent(activity, WebviewActivity.class);
                                         intent.putExtra("url", Constants.Blog.get(position).getUrl());
                                         intent.putExtra("title", "ブログ");
                                         activity.startActivity(intent);
@@ -251,7 +249,7 @@ public class RequestVolley {
                                         int position,
                                         long id
                                 ) {
-                                    Intent intent = new Intent(activity, ContentActivity.class);
+                                    Intent intent = new Intent(activity, WebviewActivity.class);
                                     intent.putExtra("url", href.get(position));
                                     intent.putExtra("title", "ニュース");
                                     activity.startActivity(intent);
@@ -315,7 +313,7 @@ public class RequestVolley {
     public static void readMoreVideo(final Activity activity, View view, final RequestQueue mQueue, final String URL, final ArrayList<FetchYoutube> youtube) {
         ListView YoutubeListView = (ListView) view.findViewById(R.id.list4);
 
-        ImageListAdapter adapter = new ImageListAdapter(
+        YoutubeListAdapter adapter = new YoutubeListAdapter(
                 activity,
                 0,
                 youtube
@@ -363,7 +361,7 @@ public class RequestVolley {
                                                 //nextPageTokenの値をConstants.NEXT_TOKEN_URLに格納
                                                 Constants.NEXT_TOKEN_URL = response.getString("nextPageToken");
                                                 ListView YoutubeListView = (ListView) view.findViewById(R.id.list4);
-                                                ImageListAdapter adapter = new ImageListAdapter(
+                                                YoutubeListAdapter adapter = new YoutubeListAdapter(
                                                         activity,
                                                         0,
                                                         youtube

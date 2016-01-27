@@ -3,25 +3,11 @@ package kenyawakita.musi_king;
 import android.content.Intent;
 import android.os.Bundle;
 import android.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
-
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
 
 import uk.co.senab.actionbarpulltorefresh.library.ActionBarPullToRefresh;
 import uk.co.senab.actionbarpulltorefresh.library.Options;
@@ -37,9 +23,9 @@ public class TicketFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle saveInstanceState) {
-        final View view = inflater.inflate(R.layout.ticket_tab, container, false);
+        final View view = inflater.inflate(R.layout.fragment_view, container, false);
 
-        final ListView TicketListView = (ListView) view.findViewById(R.id.list1);
+        final ListView TicketListView = (ListView) view.findViewById(R.id.listview);
         mPulltoRefresh = (PullToRefreshLayout) view.findViewById(R.id.pull_to);
 
         //refreshした時
@@ -83,7 +69,7 @@ public class TicketFragment extends Fragment {
                         int position,
                         long id
                 ) {
-                    Intent intent = new Intent(getActivity(), ContentActivity.class);
+                    Intent intent = new Intent(getActivity(), WebviewActivity.class);
                     intent.putExtra("url", Constants.Ticket.get(position).getUrl());
                     intent.putExtra("title", "チケット");
                     startActivity(intent);

@@ -8,9 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.TableLayout;
-
-import kenyawakita.musi_king.R;
 
 public class WebviewFragment extends Fragment{
 
@@ -23,7 +20,7 @@ public class WebviewFragment extends Fragment{
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle saveInstanceState) {
-        final View view = inflater.inflate(R.layout.activity_content, container, false);
+        final View view = inflater.inflate(R.layout.fragment_webview, container, false);
 
         Bundle bundle = getArguments();
         Tab_Name = bundle.getString("Tab_name");

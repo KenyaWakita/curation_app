@@ -1,11 +1,27 @@
+buildscript {
+    repositories {
+        maven { url 'https://maven.fabric.io/public' }
+    }
+
+    dependencies {
+        classpath 'io.fabric.tools:gradle:1.+'
+    }
+}
 apply plugin: 'com.android.application'
+apply plugin: 'io.fabric'
+
+repositories {
+    maven { url 'https://maven.fabric.io/public' }
+}
+
+
 
 android {
     compileSdkVersion 22
     buildToolsVersion "22.0.0"
 
     defaultConfig {
-        applicationId "kenyawakita.app_rank"
+        applicationId "kenyawakita.app_96neko"
         minSdkVersion 21
         targetSdkVersion 22
         versionCode 3
@@ -28,4 +44,10 @@ dependencies {
     compile files('libs/adstirwebview.jar')
     compile 'com.google.android.gms:play-services:+'
     compile 'com.android.support:support-v4:22.2.0'
+    compile('com.twitter.sdk.android:twitter:1.12.0@aar') {
+        transitive = true;
+    }
+    compile('com.twitter.sdk.android:twitter:1.12.0@aar') {
+        transitive = true;
+    }
 }

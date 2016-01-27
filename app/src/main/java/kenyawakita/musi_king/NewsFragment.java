@@ -21,11 +21,11 @@ public class NewsFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle saveInstanceState) {
-        final View view = inflater.inflate(R.layout.news_tab, container, false);
+        final View view = inflater.inflate(R.layout.fragment_view, container, false);
         final Activity owner = getActivity();
 
         mPulltoRefresh = (PullToRefreshLayout) view.findViewById(R.id.pull_to);
-        final ListView newsListView = (ListView) view.findViewById(R.id.list3);
+        final ListView newsListView = (ListView) view.findViewById(R.id.listview);
 
         com.ad_stir.webview.AdstirMraidView adView = new com.ad_stir.webview.AdstirMraidView(
                 owner,
@@ -80,7 +80,7 @@ public class NewsFragment extends Fragment {
                         int position,//何番目？
                         long id //View id
                 ) {
-                    Intent intent = new Intent(owner, ContentActivity.class);
+                    Intent intent = new Intent(owner, WebviewActivity.class);
                     intent.putExtra("url", Constants.news_sites.get(position).getUrl());
                     intent.putExtra("title", "ニュース");
                     startActivity(intent);

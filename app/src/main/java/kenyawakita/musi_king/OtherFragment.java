@@ -63,7 +63,7 @@ public class OtherFragment extends Fragment {
                     int position,
                     long id
             ) {
-                Intent intent = new Intent(getActivity(), ContentActivity.class);
+                Intent intent = new Intent(getActivity(), WebviewActivity.class);
                 intent.putExtra("url", href[position]);
                 intent.putExtra("title", Other.get(position));
                 startActivity(intent);

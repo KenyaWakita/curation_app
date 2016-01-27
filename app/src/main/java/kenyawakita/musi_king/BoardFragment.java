@@ -9,8 +9,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.android.volley.RequestQueue;
-
 import java.util.Random;
 
 import uk.co.senab.actionbarpulltorefresh.library.ActionBarPullToRefresh;
@@ -31,7 +29,7 @@ public class BoardFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle saveInstanceState) {
-        final View view = inflater.inflate(R.layout.news_tab, container, false);
+        final View view = inflater.inflate(R.layout.fragment_view, container, false);
 
         //ArrayList<FetchYoutube> list = (ArrayList<FetchYoutube>)bundle.getSerializable("list");
 
@@ -48,7 +46,7 @@ public class BoardFragment extends Fragment {
         }
 
 
-        final ListView BordListView = (ListView) view.findViewById(R.id.list3);
+        final ListView BordListView = (ListView) view.findViewById(R.id.listview);
         mPulltoRefresh = (PullToRefreshLayout) view.findViewById(R.id.pull_to);
 
         //refreshした時
@@ -91,7 +89,7 @@ public class BoardFragment extends Fragment {
                         int position,
                         long id
                 ) {
-                    Intent intent = new Intent(getActivity(), ContentActivity.class);
+                    Intent intent = new Intent(getActivity(), WebviewActivity.class);
                     intent.putExtra("url", Constants.Bord.get(position).getUrl());
                     intent.putExtra("title", "掲示板");
                     startActivity(intent);

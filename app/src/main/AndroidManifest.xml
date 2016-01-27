@@ -23,7 +23,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="kenyawakita.musi_king.ContentActivity"
+            android:name=".WebviewActivity"
             android:label="@string/title_activity_content" >
         </activity>
         //インターステイシャル
@@ -35,6 +35,13 @@
             android:name=".YoutubeChannel"
             android:label="@string/title_activity_youtube_channel" >
         </activity>
+
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="8cc7a2a3b162df56c78303062e2edffb2452e9d5" />
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="8cc7a2a3b162df56c78303062e2edffb2452e9d5" />
 
     </application>
 

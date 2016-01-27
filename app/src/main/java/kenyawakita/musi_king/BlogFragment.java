@@ -27,7 +27,7 @@ public class BlogFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle saveInstanceState) {
-         final View view = inflater.inflate(R.layout.blog_tab, container, false);
+         final View view = inflater.inflate(R.layout.fragment_view, container, false);
         mPulltoRefresh = (PullToRefreshLayout) view.findViewById(R.id.pull_to);
         blogListView = (ListView) view.findViewById(R.id.listview);
         //ランダム関数1～5
@@ -77,7 +77,7 @@ public class BlogFragment extends Fragment {
                     int position,
                     long id
             ) {
-                Intent intent = new Intent(getActivity(), ContentActivity.class);
+                Intent intent = new Intent(getActivity(), WebviewActivity.class);
                 intent.putExtra("url", Constants.Blog.get(position).getUrl());
                 intent.putExtra("title", "ブログ");
                 startActivity(intent);

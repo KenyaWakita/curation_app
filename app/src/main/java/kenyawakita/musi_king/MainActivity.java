@@ -1,5 +1,4 @@
 package kenyawakita.musi_king;
-
 import java.util.Locale;
 
 import android.app.Activity;
@@ -52,7 +51,7 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
         tab.setTabListener(this);
         actionBar.addTab(tab);
         TextView textView = (TextView) findViewById(R.id.tab1_title);
-        textView.setText("Androidランキング");
+        textView.setText("96猫ツイート");
         ImageView image = (ImageView) findViewById(R.id.tab1_icon);
         image.setImageResource(R.drawable.android);
 
@@ -61,7 +60,7 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
         tab2.setTabListener(this);
         actionBar.addTab(tab2);
         TextView textView2 = (TextView) findViewById(R.id.tab2_title);
-        textView2.setText("iphoneランキング");
+        textView2.setText("公式チャンネル");
         ImageView image2 = (ImageView) findViewById(R.id.tab2_icon);
         image2.setImageResource(R.drawable.apple);
 
@@ -71,7 +70,7 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
         tab3.setTabListener(this);
         actionBar.addTab(tab3);
         TextView textView3 = (TextView) findViewById(R.id.tab3_title);
-        textView3.setText("Androidニュース");
+        textView3.setText("生放送");
         ImageView image3 = (ImageView) findViewById(R.id.tab3_icon);
         image3.setImageResource(R.drawable.android);
 
@@ -81,7 +80,7 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
         tab4.setTabListener(this);
         actionBar.addTab(tab4);
         TextView textView4 = (TextView) findViewById(R.id.tab4_title);
-        textView4.setText("iphoneニュース");
+        textView4.setText("歌ってみた");
         ImageView image4 = (ImageView) findViewById(R.id.tab4_icon);
         image4.setImageResource(R.drawable.apple);
 
@@ -115,12 +114,11 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
 
             switch (position) {
                 case 0:
-                    WebviewFragment app_rank_android = new WebviewFragment();
-                    Bundle bundle_and = new Bundle();
-                    bundle_and.putString("Tab_Name","Androidランキング");
-                    bundle_and.putString("url", Constants.APP_RANK_ANDROID_URL);
-                    app_rank_android.setArguments(bundle_and);
-                    return app_rank_android;
+                    TwitterFragment twitterFragment = new TwitterFragment();
+                    Bundle bundle_twitter = new Bundle();
+                    bundle_twitter.putString("twitter_account",Constants.TWITTER_ACCOUNT);
+                    twitterFragment.setArguments(bundle_twitter);
+                    return twitterFragment;
                 case 1:
                     WebviewFragment app_rank_iphone = new WebviewFragment();
                     Bundle bundle_ipho = new Bundle();
@@ -137,13 +135,11 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
                     app_rank_android_article.setArguments(bundle_andart);
                     return app_rank_android_article;
                 case 3:
-                    BoardTypeFragment app_rank_iphone_article = new BoardTypeFragment();
-                    Bundle bundle_iphoart = new Bundle();
-                    bundle_iphoart.putStringArrayList("title",Constants.iphone_BoardType_title);
-                    bundle_iphoart.putStringArrayList("href",Constants.iphone_BoardType_href);
-                    bundle_iphoart.putString("json_url", Constants.APP_RANK_IPHONE_ARTICLE_JSON);
-                    app_rank_iphone_article.setArguments(bundle_iphoart);
-                    return app_rank_iphone_article;
+                    TwitterFragment twitterFragment1 = new TwitterFragment();
+                    Bundle bundle_twitter1 = new Bundle();
+                    bundle_twitter1.putString("twitter_account",Constants.TWITTER_ACCOUNT);
+                    twitterFragment1.setArguments(bundle_twitter1);
+                    return twitterFragment1;
             }
             return null;
         }

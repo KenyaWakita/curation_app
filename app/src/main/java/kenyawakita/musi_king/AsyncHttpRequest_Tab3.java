@@ -20,8 +20,6 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import kenyawakita.musi_king.R;
-
 public class AsyncHttpRequest_Tab3 extends AsyncTask<String, Void, String> {
     public Activity owner;
     ArrayList<FetchNews> newsList = new ArrayList<FetchNews>();
@@ -78,7 +76,7 @@ public class AsyncHttpRequest_Tab3 extends AsyncTask<String, Void, String> {
 
         //三つの記事を日付でソート
         Collections.sort(newsList, new DateComparator());
-        ListView listView = (ListView) owner.findViewById(R.id.list3); //list3の部分を汎用化したい
+        ListView listView = (ListView) owner.findViewById(R.id.listview); //list3の部分を汎用化したい
         Constants.news_sites = newsList;
         NewsListAdapter adapter = new NewsListAdapter(
                 owner,
@@ -94,7 +92,7 @@ public class AsyncHttpRequest_Tab3 extends AsyncTask<String, Void, String> {
                     int position,//何番目？
                     long id //View id
             ) {
-                Intent intent = new Intent(owner, ContentActivity.class);
+                Intent intent = new Intent(owner, WebviewActivity.class);
                 intent.putExtra("url", Constants.news_sites.get(position).getUrl());
                 intent.putExtra("title", "ニュース");
                 owner.startActivity(intent);

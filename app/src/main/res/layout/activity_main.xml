@@ -24,7 +24,14 @@
 
     </android.support.v4.view.ViewPager>
 
-
-
+    <com.ad_stir.webview.AdstirMraidView
+        media="MEDIA-8f52fd45"
+        spot="1"
+        adsize="350,50"
+        refresh_interval="3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center"
+        />
 
 </FrameLayout>

@@ -36,7 +36,7 @@ public class BoardTypeFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle saveInstanceState) {
-        final View view = inflater.inflate(R.layout.blog_tab, container, false);
+        final View view = inflater.inflate(R.layout.fragment_view, container, false);
         mPulltoRefresh = (PullToRefreshLayout) view.findViewById(R.id.pull_to);
         BoardTypeListView = (ListView) view.findViewById(R.id.listview);
 

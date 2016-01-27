@@ -75,7 +75,8 @@ public class Constants {//static�̓R���X�^���X�����Ȃ�
     public static final String APP_RANK_IPHONE_ARTICLE_JSON = "https://www.kimonolabs.com/api/c87xv81k?apikey=O1LWGKfEhBnwnOmTTuxzTO5UiTYhLuLu";
 
 
-
+    //twitterタブで取得したいid名(アカウント名) @の後の文字列
+    public  static final String TWITTER_ACCOUNT = "96__neko";
 
     //その他
     public static final String OFFICIAL_WEBSITE =  "http://www.jsoulb.jp/";
