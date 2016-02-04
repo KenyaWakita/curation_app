@@ -11,7 +11,7 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme"
-        android:name=".MeasurementGAManager"
+        android:name="AnalyticsApplication"
         >
         <activity
             android:name="kenyawakita.musi_king.MainActivity"

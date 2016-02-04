@@ -3,6 +3,7 @@ package kenyawakita.musi_king;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
+import android.util.Log;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
@@ -114,11 +115,11 @@ public class RequestVolley {
                             for (int i = 0; i < collection.length(); i++) {
                                 JSONObject roo = collection.getJSONObject(i);
                                 title.add(roo.getJSONObject("title").getString("text"));
-                                date.add(roo.getJSONObject("last").getString("text"));
+                                date.add(roo.getString("last"));
                                 href.add(roo.getJSONObject("title").getString("href"));
                                 post.add(roo.getString("post"));
 
-                                Constants.Bord.add(new FetchNews(title.get(i), href.get(i), date.get(i), "投稿数 : " + post.get(i)));
+                                Constants.Bord.add(new FetchNews(title.get(i), href.get(i), date.get(i), post.get(i)));
                             }
 
                             ListView blogListView = (ListView) view.findViewById(R.id.listview);
@@ -215,60 +216,66 @@ public class RequestVolley {
                     }));
     }
 
-    public static void fetchFromBoardType(final Activity activity, final View view, final String url,
-                                          final ArrayList<String> title, final ArrayList<String> href) {
-        RequestQueue mQueue = Volley.newRequestQueue(activity);
-        mQueue.add(new JsonObjectRequest(Request.Method.GET, url, null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        try {
-                            JSONArray collection = response.getJSONObject("results").getJSONArray("collection1");
+    public static void fetchFromBoardType(final Activity activity, final View view, final String url) {
 
+        final ArrayList<String> title = new ArrayList<>();
+        final ArrayList<String> href = new ArrayList<>();
+            RequestQueue mQueue = Volley.newRequestQueue(activity);
+            mQueue.add(new JsonObjectRequest(Request.Method.GET, url, null,
+                    new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            try {
+                                JSONArray collection = response.getJSONObject("results").getJSONArray("collection1");
 
-                            for (int i = 0; i < collection.length(); i++) {
-                                JSONObject roo = collection.getJSONObject(i);
-                                title.add(roo.getJSONObject("property1").getString("text"));
-                                href.add(roo.getJSONObject("property1").getString("href"));
-
-                            }
-
-                            ListView boardtypeListView = (ListView) view.findViewById(R.id.listview);
-                            BoardTypeListAdapter adapter = new BoardTypeListAdapter(
-                                    activity,
-                                    0,
-                                    title
-                            );
-
-                            boardtypeListView.setAdapter(adapter);
-                            boardtypeListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                                @Override
-                                public void onItemClick(
-                                        AdapterView<?> parent,
-                                        View view,
-                                        int position,
-                                        long id
-                                ) {
-                                    Intent intent = new Intent(activity, WebviewActivity.class);
-                                    intent.putExtra("url", href.get(position));
-                                    intent.putExtra("title", "ニュース");
-                                    activity.startActivity(intent);
+                                for (int i = 0; i < collection.length(); i++) {
+                                    JSONObject roo = collection.getJSONObject(i);
+                                    title.add(roo.getJSONObject("title").getString("text"));
+                                    href.add(roo.getJSONObject("title").getString("href"));
                                 }
-                            });
 
 
 
-                        } catch (JSONException e) {
-                            e.printStackTrace();
+                                ListView boardtypeListView = (ListView) view.findViewById(R.id.listview);
+
+                                BoardTypeListAdapter adapter = new BoardTypeListAdapter(
+                                        activity,
+                                        0,
+                                        title
+                                );
+
+                                boardtypeListView.setAdapter(adapter);
+                                boardtypeListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                    @Override
+                                    public void onItemClick(
+                                            AdapterView<?> parent,
+                                            View view,
+                                            int position,
+                                            long id
+                                    ) {
+                                        Intent intent = new Intent(activity, WebviewActivity.class);
+                                        intent.putExtra("url", href.get(position));
+                                        intent.putExtra("title", "ニュース");
+                                        activity.startActivity(intent);
+                                    }
+                                });
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
                         }
-                    }
 
-                },new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-            }
-        }));
-    }
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                }
+            }));
+
+        }
+
+
+
+
 
 
     public static void fetchFromYoutube(final Activity activity, final View view, final String URL, final ArrayList<FetchYoutube> youtube) {

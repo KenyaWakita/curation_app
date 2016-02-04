@@ -3,6 +3,7 @@ package kenyawakita.musi_king;
 
 import android.app.Fragment;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,8 +43,8 @@ public class BoardTypeFragment extends Fragment {
 
         Bundle bundle = getArguments();
         json_url = bundle.getString("json_url");
-        BoardType_title = bundle.getStringArrayList("title");
-        BoardType_href = bundle.getStringArrayList("href");
+        String theme = bundle.getString("theme");
+
 
         //ランダム関数1～5
         //ブログタブを表示したとき，5分の1の確率で広告が表示される
@@ -64,12 +65,30 @@ public class BoardTypeFragment extends Fragment {
                 .listener(new OnRefreshListener() {
                     @Override
                     public void onRefreshStarted(final View view) {
-                        RequestVolley.fetchFromBoardType(getActivity(), view, json_url, BoardType_title, BoardType_href);
+                        RequestVolley.fetchFromBoardType(getActivity(), view, json_url);
                         mPulltoRefresh.setRefreshComplete();
                     }
                 }).setup(mPulltoRefresh);
+//
+//        switch (theme){
+//            case "official":
+//                RequestVolley.fetchFromYoutube(getActivity(), view, json_url, Constants.youtube_official);
+//                break;
+//            case "live":
+//                RequestVolley.fetchFromYoutube(getActivity(), view, json_url, Constants.youtube_live);
+//                break;
+//            case "sing":
+//                RequestVolley.fetchFromYoutube(getActivity(), view, json_url, Constants.youtube_sing);
+//                break;
+//            case "game":
+//                RequestVolley.fetchFromYoutube(getActivity(), view, json_url, Constants.youtube_game);
+//                break;
+//            default:
+//                RequestVolley.fetchFromYoutube(getActivity(), view, json_url, Constants.youtube_game);
+//                break;
+//        }
 
-        RequestVolley.fetchFromBoardType(getActivity(), view, json_url, BoardType_title, BoardType_href);
+        RequestVolley.fetchFromBoardType(getActivity(), view, json_url);
 
         return view;
     }

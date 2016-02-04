@@ -75,7 +75,7 @@ public class AsyncHttpRequest_Tab3 extends AsyncTask<String, Void, String> {
         }
 
         //三つの記事を日付でソート
-        Collections.sort(newsList, new DateComparator());
+//        Collections.sort(newsList, new DateComparator());
         ListView listView = (ListView) owner.findViewById(R.id.listview); //list3の部分を汎用化したい
         Constants.news_sites = newsList;
         NewsListAdapter adapter = new NewsListAdapter(

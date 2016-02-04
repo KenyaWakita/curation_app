@@ -21,10 +21,10 @@ android {
     buildToolsVersion "22.0.0"
 
     defaultConfig {
-        applicationId "kenyawakita.app_96neko"
+        applicationId "kenyawakita.app_MHX"
         minSdkVersion 21
         targetSdkVersion 22
-        versionCode 3
+        versionCode 1
         versionName "1.0"
     }
     buildTypes {

@@ -9,8 +9,11 @@ import android.app.FragmentTransaction;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.google.android.gms.analytics.HitBuilders;
 
 
 public class MainActivity extends Activity implements ActionBar.TabListener {
@@ -24,6 +27,7 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
      * {@link android.support.v13.app.FragmentStatePagerAdapter}.
      */
     SectionsPagerAdapter mSectionsPagerAdapter;
+    AnalyticsApplication application;
 
     ViewPager mViewPager;
 
@@ -51,18 +55,18 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
         tab.setTabListener(this);
         actionBar.addTab(tab);
         TextView textView = (TextView) findViewById(R.id.tab1_title);
-        textView.setText("96猫ツイート");
+        textView.setText("ニュース");
         ImageView image = (ImageView) findViewById(R.id.tab1_icon);
-        image.setImageResource(R.drawable.android);
+        image.setImageResource(R.drawable.news);
 
         ActionBar.Tab tab2 =actionBar.newTab();
         tab2.setCustomView(R.layout.tab2);
         tab2.setTabListener(this);
         actionBar.addTab(tab2);
         TextView textView2 = (TextView) findViewById(R.id.tab2_title);
-        textView2.setText("公式チャンネル");
+        textView2.setText("掲示板");
         ImageView image2 = (ImageView) findViewById(R.id.tab2_icon);
-        image2.setImageResource(R.drawable.apple);
+        image2.setImageResource(R.drawable.board);
 
 
         ActionBar.Tab tab3 =actionBar.newTab();
@@ -70,9 +74,9 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
         tab3.setTabListener(this);
         actionBar.addTab(tab3);
         TextView textView3 = (TextView) findViewById(R.id.tab3_title);
-        textView3.setText("生放送");
+        textView3.setText("攻略情報");
         ImageView image3 = (ImageView) findViewById(R.id.tab3_icon);
-        image3.setImageResource(R.drawable.android);
+        image3.setImageResource(R.drawable.cheat);
 
 
         ActionBar.Tab tab4 =actionBar.newTab();
@@ -80,10 +84,27 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
         tab4.setTabListener(this);
         actionBar.addTab(tab4);
         TextView textView4 = (TextView) findViewById(R.id.tab4_title);
-        textView4.setText("歌ってみた");
+        textView4.setText("ゲーム実況");
         ImageView image4 = (ImageView) findViewById(R.id.tab4_icon);
-        image4.setImageResource(R.drawable.apple);
+        image4.setImageResource(R.drawable.game);
 
+        ActionBar.Tab tab5 =actionBar.newTab();
+        tab5.setCustomView(R.layout.tab5);
+        tab5.setTabListener(this);
+        actionBar.addTab(tab5);
+        TextView textView5 = (TextView) findViewById(R.id.tab5_title);
+        textView5.setText("武器");
+        ImageView image5 = (ImageView) findViewById(R.id.tab5_icon);
+        image5.setImageResource(R.drawable.weapon);
+
+        ActionBar.Tab tab6 =actionBar.newTab();
+        tab6.setCustomView(R.layout.tab6);
+        tab6.setTabListener(this);
+        actionBar.addTab(tab6);
+        TextView textView6 = (TextView) findViewById(R.id.tab6_title);
+        textView6.setText("モンスター");
+        ImageView image6 = (ImageView) findViewById(R.id.tab6_icon);
+        image6.setImageResource(R.drawable.monster);
     }
 
     @Override
@@ -114,39 +135,54 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
 
             switch (position) {
                 case 0:
-                    TwitterFragment twitterFragment = new TwitterFragment();
-                    Bundle bundle_twitter = new Bundle();
-                    bundle_twitter.putString("twitter_account",Constants.TWITTER_ACCOUNT);
-                    twitterFragment.setArguments(bundle_twitter);
-                    return twitterFragment;
+                    application.tracker.setScreenName("ニュース");
+                    application.tracker.send(new HitBuilders.ScreenViewBuilder().build());
+                    NewsFragment news = new NewsFragment();
+                    return news;
                 case 1:
-                    WebviewFragment app_rank_iphone = new WebviewFragment();
-                    Bundle bundle_ipho = new Bundle();
-                    bundle_ipho.putString("Tab_Name","iphoneランキング");
-                    bundle_ipho.putString("url", Constants.APP_RANK_IPHONE_URL);
-                    app_rank_iphone.setArguments(bundle_ipho);
-                    return app_rank_iphone;
+                    application.tracker.setScreenName("掲示板");
+                    application.tracker.send(new HitBuilders.ScreenViewBuilder().build());
+                    return new BoardFragment();
                 case 2:
-                    BoardTypeFragment app_rank_android_article = new BoardTypeFragment();
-                    Bundle bundle_andart = new Bundle();
-                    bundle_andart.putStringArrayList("title",Constants.android_BoardType_title);
-                    bundle_andart.putStringArrayList("href",Constants.android_BoardType_href);
-                    bundle_andart.putString("json_url", Constants.APP_RANK_ANDROID_ARTICLE_JSON);
-                    app_rank_android_article.setArguments(bundle_andart);
-                    return app_rank_android_article;
+                    application.tracker.setScreenName("攻略情報");
+                    application.tracker.send(new HitBuilders.ScreenViewBuilder().build());
+                    BoardTypeFragment cheat = new BoardTypeFragment();
+                    Bundle bundle_cheat = new Bundle();
+                    bundle_cheat.putString("json_url", Constants.BoardType_JSON2);
+                    cheat.setArguments(bundle_cheat);
+                    return cheat;
                 case 3:
-                    TwitterFragment twitterFragment1 = new TwitterFragment();
-                    Bundle bundle_twitter1 = new Bundle();
-                    bundle_twitter1.putString("twitter_account",Constants.TWITTER_ACCOUNT);
-                    twitterFragment1.setArguments(bundle_twitter1);
-                    return twitterFragment1;
+                    application.tracker.setScreenName("動画実況");
+                    application.tracker.send(new HitBuilders.ScreenViewBuilder().build());
+                    YoutubeFragment youtube_jikkyou = new YoutubeFragment();
+                    Bundle bundle_jikkyou = new Bundle();
+                    bundle_jikkyou.putString("url", Constants.YOUTUBE_SEARCH_URL);
+
+                    youtube_jikkyou.setArguments(bundle_jikkyou);
+                    return youtube_jikkyou;
+                case 4:
+                    application.tracker.setScreenName("武器");
+                    application.tracker.send(new HitBuilders.ScreenViewBuilder().build());
+                    BoardTypeFragment weapon = new BoardTypeFragment();
+                    Bundle bundle_weapon = new Bundle();
+                    bundle_weapon.putString("json_url", Constants.BoardType_JSON3);
+                    weapon.setArguments(bundle_weapon);
+                    return weapon;
+                case 5:
+                    application.tracker.setScreenName("モンスター");
+                    application.tracker.send(new HitBuilders.ScreenViewBuilder().build());
+                    BoardTypeFragment monster = new BoardTypeFragment();
+                    Bundle bundle_monster = new Bundle();
+                    bundle_monster.putString("json_url", Constants.BoardType_JSON4);
+                    monster.setArguments(bundle_monster);
+                    return monster;
             }
             return null;
         }
 
         @Override
         public int getCount() {
-            return 4;
+            return 6;
         }
 
         @Override

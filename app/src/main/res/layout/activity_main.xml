@@ -24,8 +24,9 @@
 
     </android.support.v4.view.ViewPager>
 
+    //mediaのIDも毎回変える
     <com.ad_stir.webview.AdstirMraidView
-        media="MEDIA-8f52fd45"
+        media="MEDIA-6238b456"
         spot="1"
         adsize="350,50"
         refresh_interval="3"

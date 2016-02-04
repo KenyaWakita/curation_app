@@ -55,7 +55,7 @@ public class YoutubeListAdapter extends ArrayAdapter<FetchYoutube> {
         View v = convertView;
         if(v == null){
             Log.d("ListViewTest", position + "��v��V�K����");
-            v = mInflater.inflate(R.layout.tab4listview, null);
+            v = mInflater.inflate(R.layout.youtubelistview, null);
         }
 
         // ���̍s�̂��߂̃f�[�^��ǂݏo��

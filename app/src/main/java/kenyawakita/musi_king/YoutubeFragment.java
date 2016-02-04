@@ -46,6 +46,7 @@ public class YoutubeFragment extends Fragment {
            interstitial.showTypeA(getActivity());
         }
 
+
         Constants.youtube = new ArrayList<FetchYoutube>();
         RequestVolley.fetchFromYoutube(getActivity(), view, url, Constants.youtube);
         return view;
